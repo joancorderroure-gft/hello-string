@@ -14,6 +14,13 @@ public class DemoProjectApplication {
 		SpringApplication.run(DemoProjectApplication.class, args);
 	}
 
+
+	@GetMapping("/")
+	public String root() {
+		String root = "Hello world";
+		return root;
+	}
+
 	@GetMapping("/home")
 	public String presentation() {
 		String presentation = "This is the home page of Joan Corderroure";

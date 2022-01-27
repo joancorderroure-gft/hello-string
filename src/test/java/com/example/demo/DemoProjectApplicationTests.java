@@ -24,7 +24,17 @@ class DemoProjectApplicationTests {
 				.isEqualTo("Hello world");
 	}
 
+	@Test
+	void homeTest(@Autowired TestRestTemplate restTemplate) {
+		assertThat(restTemplate.getForObject("/home", String.class))
+				.isEqualTo("This is the home page of Joan Corderroure");
+	}
 
+	@Test
+	void helloTest(@Autowired TestRestTemplate restTemplate) {
+		assertThat(restTemplate.getForObject("/hello", String.class))
+				.isEqualTo("Hello World!");
+	}
 
 }
 

@@ -26,10 +26,15 @@ public class DemoProjectApplication {
 		String presentation = "This is the home page of Joan Corderroure";
 		return presentation;
 	}
-	
+
 	@GetMapping("/hello")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return String.format("Hello %s!", name);
 	}
-	
+
+	@GetMapping("/add")
+	public String canAdd(@RequestParam(value = "a", defaultValue = "0") int a,
+						 @RequestParam(value = "b", defaultValue = "0") int b) {
+		return String.format("%s", a+b);
+	}
 }

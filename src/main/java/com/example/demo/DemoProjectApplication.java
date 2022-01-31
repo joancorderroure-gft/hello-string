@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.sinensia.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,17 +14,9 @@ public class DemoProjectApplication {
 		SpringApplication.run(DemoProjectApplication.class, args);
 	}
 
-
 	@GetMapping("/")
 	public String root() {
-		String root = "Hello world";
-		return root;
-	}
-
-	@GetMapping("/home")
-	public String presentation() {
-		String presentation = "This is the home page of Joan Corderroure";
-		return presentation;
+		return "Hola ke ase";
 	}
 
 	@GetMapping("/hello")
@@ -36,16 +28,13 @@ public class DemoProjectApplication {
 	public Object add(
 			@RequestParam(value="a", defaultValue = "0") Float a,
 			@RequestParam(value="b", defaultValue = "0") Float b
-	)
-	{
+	) {
 		Float sum = a+b;
 		Float decimals = sum - sum.intValue();
-		if (decimals!=0) {
+		if(decimals!=0) {
 			return sum;
 		}
 		return Integer.valueOf(sum.intValue());
-
 	}
-
 
 }

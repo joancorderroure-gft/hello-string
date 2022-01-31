@@ -33,8 +33,19 @@ public class DemoProjectApplication {
 	}
 
 	@GetMapping("/add")
-	public String canAdd(@RequestParam(value = "a", defaultValue = "0") int a,
-						 @RequestParam(value = "b", defaultValue = "0") int b) {
-		return String.format("%s", a+b);
+	public Object add(
+			@RequestParam(value="a", defaultValue = "0") Float a,
+			@RequestParam(value="b", defaultValue = "0") Float b
+	)
+	{
+		Float sum = a+b;
+		Float decimals = sum - sum.intValue();
+		if (decimals!=0) {
+			return sum;
+		}
+		return Integer.valueOf(sum.intValue());
+
 	}
+
+
 }

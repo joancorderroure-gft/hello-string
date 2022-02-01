@@ -118,7 +118,7 @@ class DemoProjectApplicationTests {
 		@Test
 		void canAdd() {
 			assertThat(app.add(1f, 2f))
-					.isEqualTo(3f);
+					.isEqualTo(3);
 		}
 
 		@Test
@@ -234,8 +234,6 @@ class DemoProjectApplicationTests {
 				"'',  2,   0",
 				"1.5, 1.5, 2.25"
 		})
-
-		@Test
 		void canMultiply(String a, String b, String expected) {
 			assertThat(restTemplate.getForObject("/multiply?a="+a+"&b="+b, String.class))
 					.isEqualTo(expected);
@@ -254,12 +252,10 @@ class DemoProjectApplicationTests {
 					"10,   -1,   -10.00",
 					"1.0, 2.0, 0.50",
 					"1,  -2,  -0.50",
-					"2, 0,   0.25",
+					"2, 1,   2.00",
 					"'',  2,   0.00",
 					"10, 3, 3.33"
 			})
-
-			@Test
 			void canDivide(String a, String b, String expected) {
 				assertThat(restTemplate.getForObject("/divide?a="+a+"&b="+b, String.class))
 						.isEqualTo(expected);
@@ -284,8 +280,6 @@ class DemoProjectApplicationTests {
 					"'',  2,   -2",
 					"1.5, 1.5, 0"
 			})
-
-			@Test
 			void canSubstract(String a, String b, String expected) {
 				assertThat(restTemplate.getForObject("/substraccion?a="+a+"&b="+b, String.class))
 						.isEqualTo(expected);

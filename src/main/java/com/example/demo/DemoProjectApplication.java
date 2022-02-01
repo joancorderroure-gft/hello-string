@@ -1,4 +1,4 @@
-package com.sinensia.demo;
+package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -36,5 +36,43 @@ public class DemoProjectApplication {
 		}
 		return Integer.valueOf(sum.intValue());
 	}
+
+	@GetMapping("/multiply")
+	public Object multiply(
+			@RequestParam(value="a", defaultValue = "0") Float a,
+			@RequestParam(value="b", defaultValue = "0") Float b
+	) {
+		Float product = a*b;
+		Float decimals = product - product.intValue();
+		if(decimals!=0) {
+			return product;
+		}
+		return Integer.valueOf(product.intValue());
+	}
+
+
+	@GetMapping("/divide")
+	public Object division(
+			@RequestParam(value="a", defaultValue = "0") Float a,
+			@RequestParam(value="b", defaultValue = "0") Float b
+	) {
+		Float product = a/b;
+		Float decimals = product - product.intValue();
+		if(decimals!=0) {
+			return product;
+		}
+		return Integer.valueOf(product.intValue());
+	}
+
+	@GetMapping("/substraccion")
+	public Object substraccion(@RequestParam(value="a", defaultValue = "0") Float a,
+							   @RequestParam(value="b", defaultValue = "0") Float b) {
+		Float product = a-b;
+		Float decimals = product - product.intValue();
+		if(decimals!=0) {
+			return product;
+		}
+		return Integer.valueOf(product.intValue());
+		}
 
 }

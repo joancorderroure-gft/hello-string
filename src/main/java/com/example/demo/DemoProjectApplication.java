@@ -6,10 +6,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Generated;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+import static java.math.RoundingMode.HALF_DOWN;
+
 @SpringBootApplication
 @RestController
 public class DemoProjectApplication {
 
+	@Generated(value="org.springframework.boot")
 	public static void main(String[] args) {
 		SpringApplication.run(DemoProjectApplication.class, args);
 	}
@@ -52,27 +59,22 @@ public class DemoProjectApplication {
 
 
 	@GetMapping("/divide")
-	public Object division(
-			@RequestParam(value="a", defaultValue = "0") Float a,
-			@RequestParam(value="b", defaultValue = "0") Float b
+	public BigDecimal division(
+			@RequestParam(value="a", defaultValue = "0") BigDecimal a,
+			@RequestParam(value="b", defaultValue = "0") BigDecimal b
 	) {
-		Float product = a/b;
-		Float decimals = product - product.intValue();
-		if(decimals!=0) {
-			return product;
-		}
-		return Integer.valueOf(product.intValue());
+		return a.divide(b, 2, HALF_DOWN);
 	}
 
 	@GetMapping("/substraccion")
 	public Object substraccion(@RequestParam(value="a", defaultValue = "0") Float a,
 							   @RequestParam(value="b", defaultValue = "0") Float b) {
-		Float product = a-b;
-		Float decimals = product - product.intValue();
+		Float subst = a-b;
+		Float decimals = subst - subst.intValue();
 		if(decimals!=0) {
-			return product;
+			return subst;
 		}
-		return Integer.valueOf(product.intValue());
+		return Integer.valueOf(subst.intValue());
 		}
 
 }

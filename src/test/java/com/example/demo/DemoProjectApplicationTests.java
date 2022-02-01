@@ -124,13 +124,13 @@ class DemoProjectApplicationTests {
 		@Test
 		void canAddZero() {
 			assertThat(app.add(0f, 2f))
-					.isEqualTo(2f);
+					.isEqualTo(2);
 		}
 
 		@Test
 		void canAddNegative(@Autowired TestRestTemplate restTemplate) {
 			assertThat(app.add(1f, -2f))
-					.isEqualTo(-1f);
+					.isEqualTo(-1);
 		}
 
 
@@ -250,13 +250,13 @@ class DemoProjectApplicationTests {
 			@DisplayName("multiple divisions")
 			@ParameterizedTest(name="{displayName} [{index}] {0} / {1} = {2}")
 			@CsvSource({
-					"2,   2,   1",
-					"1,   -1,   -1",
-					"1.0, 2.0, 0.5",
-					"1,  -2,  -0.5",
-					"0.5, 2,   0.25",
-					"'',  2,   0",
-					"1.5, 1.5, 1"
+					"10,   2,   5.00",
+					"10,   -1,   -10.00",
+					"1.0, 2.0, 0.50",
+					"1,  -2,  -0.50",
+					"2, 0,   0.25",
+					"'',  2,   0.00",
+					"10, 3, 3.33"
 			})
 
 			@Test
@@ -289,6 +289,12 @@ class DemoProjectApplicationTests {
 			void canSubstract(String a, String b, String expected) {
 				assertThat(restTemplate.getForObject("/substraccion?a="+a+"&b="+b, String.class))
 						.isEqualTo(expected);
+			}
+
+			void divideByZero(){
+				Exception thrown = assertThrows(RestClientException.class, ()-> {
+					restTemplate.getForObject("/divide?a=10&b=0", Float.class);
+				});
 			}
 }
 

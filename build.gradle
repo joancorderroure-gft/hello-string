@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'jacoco'
+	id 'pmd'
 }
 
 group = 'com.example'
@@ -27,5 +28,10 @@ jacocoTestReport {
 	reports {
 		xml.required = true
 	}
+}
+
+pmd {
+	consoleOutput = true
+	ignoreFailures = true
 }
 

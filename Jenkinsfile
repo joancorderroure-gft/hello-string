@@ -10,6 +10,11 @@ pipeline {
                 always {
                     junit 'build/test-results/test/*.xml'
                     jacoco execPattern: 'build/jacoco/*.exec'
+                    recordIssues (
+                        tools: [
+                            pmdParser(pattern: 'build/reports/pmd/*.xml')
+                        ]
+                    )
                 }
             }
         }
